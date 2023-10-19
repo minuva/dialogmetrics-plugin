@@ -18,6 +18,7 @@ function splitText(dialog_text) {
     const userUtterances = [...userMatches].map(match => match[1]);
     const agentUtterances = [...agentMatches].map(match => match[1]);
     
+    console.log(userUtterances)
     return { user: userUtterances, agent: agentUtterances };
 
 }
