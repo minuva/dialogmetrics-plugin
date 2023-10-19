@@ -7,7 +7,7 @@
         {
             "key": "dialog_size",
             "name": "dialog size from a conversation",
-            "type": "integer",
+            "type": "string",
             "default": null,
             "required": false
         }
