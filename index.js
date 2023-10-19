@@ -16,12 +16,18 @@ async function setupPlugin({ config }) {
 
 // Plugin method that processes event
 async function processEvent(event, { config, cache }) {
-    if (!event.properties) event.properties = {}
+    if (!event.properties) {
+        event.properties = {};
+    }
 
-    texts = await splitText(event.properties['text'])
-    event.properties['dialog_size'] = texts.length
-    
-    return event
+    if (!event.properties['text']) {
+        event.properties['text'] = ''; // Set a default value if 'text' is undefined
+    }
+
+    const texts = await splitText(event.properties['text']);
+    event.properties['dialog_size'] = texts.length;
+
+    return event;
 }
 
 // The plugin itself
