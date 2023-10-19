@@ -7,7 +7,7 @@ async function setupPlugin({ config }) {
     console.log(config.dialog_size)
 }
 
-async function splitText(dialog_text) {
+function splitText(dialog_text) {
     
     const userPattern = /user:(.*?)(?=(agent:|$))/gs;
     const agentPattern = /agent:(.*?)(?=(user:|$))/gs;
