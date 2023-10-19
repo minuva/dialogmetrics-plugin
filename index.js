@@ -7,7 +7,7 @@ async function setupPlugin({ config }) {
     console.log(config.dialog_size)
 }
 
-function splitText(dialog_text) {
+async function splitText(dialog_text) {
     
     const userPattern = /user:(.*?)(?=(agent:|$))/gs;
     const agentPattern = /agent:(.*?)(?=(user:|$))/gs;
@@ -18,7 +18,6 @@ function splitText(dialog_text) {
     const userUtterances = [...userMatches].map(match => match[1]);
     const agentUtterances = [...agentMatches].map(match => match[1]);
     
-    console.log(userUtterances)
     return { user: userUtterances, agent: agentUtterances };
 
 }
@@ -33,7 +32,7 @@ async function processEvent(event, { config, cache }) {
     }
 
     dialog = event.properties['text']
-    const utterances = splitText(dialog);
+    const utterances = await splitText(dialog);
     total_size = utterances.user.length + utterances.agent.length;
 
     event.properties['dialog_size'] = total_size;
