@@ -1,14 +1,14 @@
 {
-    "name": "Hello World",
+    "name": "Dialog Size",
     "url": "https://github.com/PostHog/posthog-hello-world-plugin",
-    "description": "Greet the world with every PostHog event. An example plugin.",
+    "description": "Caculate dialog size from a conversation",
     "main": "index.js",
     "config": [
         {
-            "key": "greeting",
-            "name": "What greeting would you like to use?",
-            "type": "string",
-            "default": "Hello world!",
+            "key": "dialog_size",
+            "name": "dialog size from a conversation",
+            "type": "integer",
+            "default": null,
             "required": false
         }
     ]

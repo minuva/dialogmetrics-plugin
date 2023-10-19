@@ -1,21 +1,25 @@
 /* global module */
 /* eslint no-undef: "error" */
 
-// Some internal library function
-async function getRandomNumber() {
-    return 4
+async function splitText(dialog_text) {
+
+    // split text by "user:" or "agent:"
+    pattern = /user:|agent:/g
+    return dialog_text.split(pattern)
 }
 
 // Plugin method that runs on plugin load
 async function setupPlugin({ config }) {
-    console.log(config.greeting)
+    console.log(config.dialog_size)
 }
 
 // Plugin method that processes event
 async function processEvent(event, { config, cache }) {
     if (!event.properties) event.properties = {}
-    event.properties['greeting'] = config.greeting
-    event.properties['random_number'] = await getRandomNumber()
+
+    texts = await splitText(event.text)
+    event.properties['dialog_size'] = texts.length
+    
     return event
 }
 
