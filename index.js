@@ -3,6 +3,7 @@
 
 async function splitText(dialog_text) {
 
+    console.log("splitting text", dialog_text)
     // split text by "user:" or "agent:"
     pattern = /user:|agent:/g
     return dialog_text.split(pattern)
