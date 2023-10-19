@@ -21,10 +21,11 @@ async function processEvent(event, { config, cache }) {
     }
 
     if (!event.properties['text']) {
-        event.properties['text'] = ''; // Set a default value if 'text' is undefined
+        return event
     }
 
-    const texts = await splitText(event.properties['text']);
+    dialog = event.properties['text']
+    texts = splitText(dialog);
     event.properties['dialog_size'] = texts.length;
 
     return event;
