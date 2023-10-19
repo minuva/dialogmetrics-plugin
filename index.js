@@ -17,7 +17,7 @@ async function setupPlugin({ config }) {
 async function processEvent(event, { config, cache }) {
     if (!event.properties) event.properties = {}
 
-    texts = await splitText(event.text)
+    texts = await splitText(event.properties['text'])
     event.properties['dialog_size'] = texts.length
     
     return event
