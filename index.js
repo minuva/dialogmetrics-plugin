@@ -13,7 +13,8 @@ async function makePostRequest(url, data) {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "X-CSRF-Token": "rkCj3bTIgK2AMuun8cZvrbxYSy59IgdX"
         },
         body: JSON.stringify(data)
       });
@@ -22,7 +23,7 @@ async function makePostRequest(url, data) {
         const responseData = await response.json();
         return responseData;
       } else {
-        console.error("Request failed with status code: " + response.status);
+        console.error("Request message " + response);
       }
     } catch (error) {
       console.error("Error:", error);
