@@ -1,13 +1,16 @@
 /* global module */
 /* eslint no-undef: "error" */
+import { makePostRequest } from './apiRequests';
 
+const ROLE_USER = 'user';
+const ROLE_AGENT = 'agent';
 
 // Plugin method that runs on plugin load
 async function setupPlugin({ config }) {
     console.log(config.dialog_size)
 }
 
-async function splitText(dialog_text) {
+async function splitDialogText(dialog_text) {
     
     const userPattern = /user:(.*?)(?=(agent:|$))/gs;
     const agentPattern = /agent:(.*?)(?=(user:|$))/gs;
@@ -23,6 +26,8 @@ async function splitText(dialog_text) {
 }
 
 async function processEvent(event, { config, cache }) {
+
+    toxic_url = config.toxic_url;
     if (!event.properties) {
         event.properties = {};
     }
@@ -32,10 +37,25 @@ async function processEvent(event, { config, cache }) {
     }
 
     dialog = event.properties['text']
-    const utterances = await splitText(dialog);
+    const utterances = await splitDialogText(dialog);
     total_size = utterances.user.length + utterances.agent.length;
 
+    // Calculate dialog size
     event.properties['dialog_size'] = total_size;
+
+    // Get conversation toxicity
+    const textRoles = [];
+    for (const userUtterance of utterances.user) {
+        textRoles.push({ text: userUtterance, role: ROLE_USER });
+    }
+
+    for (const agentUtterance of utterances.agent) {
+        textRoles.push({ text: agentUtterance, role: ROLE_AGENT });
+    }
+
+    res = await makePostRequest(toxic_url, data);
+    console.log(res)
+
     return event;
 }
 
