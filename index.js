@@ -47,6 +47,7 @@ async function splitDialogText(dialog_text) {
 async function processEvent(event, { config, cache }) {
 
     toxic_url = config.toxic_url;
+    console.log("toxic_url: ", toxic_url)
     if (!event.properties) {
         event.properties = {};
     }
@@ -72,8 +73,9 @@ async function processEvent(event, { config, cache }) {
         textRoles.push({ text: agentUtterance, role: ROLE_AGENT });
     }
 
+    console.log("textRoles", textRoles)
     res = await makePostRequest(toxic_url, textRoles);
-    console.log(res)
+    console.log("returned res", res)
 
     return event;
 }
