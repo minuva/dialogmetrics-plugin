@@ -72,7 +72,7 @@ async function processEvent(event, { config, cache }) {
         textRoles.push({ text: agentUtterance, role: ROLE_AGENT });
     }
 
-    res = await makePostRequest(toxic_url, data);
+    res = await makePostRequest(toxic_url, textRoles);
     console.log(res)
 
     return event;
