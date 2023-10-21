@@ -14,7 +14,10 @@ async function makePostRequest(url, data) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-Token": "rkCj3bTIgK2AMuun8cZvrbxYSy59IgdX"
+          "Accept-Encoding": "gzip, deflate, br",
+          "Connection": "keep-alive",
+          "Accept": "*/*",
+           
         },
         body: JSON.stringify(data)
       });
@@ -76,7 +79,13 @@ async function processEvent(event, { config, cache }) {
 
     console.log("textRoles", textRoles)
     res = await makePostRequest(toxic_url, textRoles);
-    console.log("returned res", res)
+    
+    // Iterate res dictionary and add to event
+    for (const key in res) {
+      if (res.hasOwnProperty(key)) {
+            event.properties[key + "_test"] = res[key]; 
+        }
+    }
 
     return event;
 }
