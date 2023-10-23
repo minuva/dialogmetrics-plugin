@@ -3,7 +3,7 @@
 
 // Plugin method that runs on plugin load
 async function setupPlugin({ config }) {
-    console.log(config.dialog_size)
+    console.log(config)
 }
 
 async function splitDialogText(dialog_text) {
