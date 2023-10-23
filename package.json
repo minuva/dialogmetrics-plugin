@@ -1,12 +1,12 @@
 {
-    "name": "posthog-hello-world-plugin",
+    "name": "posthog-dialog-size",
     "private": true,
-    "version": "1.0.0",
+    "version": "0.0.0",
     "keywords": [
         "posthog",
         "plugin"
     ],
-    "author": "PostHog <hey@posthog.com>",
+    "author": "None",
     "license": "MIT",
     "jest": {
         "testEnvironment": "node"

@@ -1,36 +1,9 @@
 /* global module */
 /* eslint no-undef: "error" */
-const ROLE_USER = 'user';
-const ROLE_AGENT = 'agent';
 
 // Plugin method that runs on plugin load
 async function setupPlugin({ config }) {
     console.log(config.dialog_size)
-}
-
-async function makePostRequest(url, data) {
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept-Encoding": "gzip, deflate, br",
-          "Connection": "keep-alive",
-          "Accept": "*/*",
-           
-        },
-        body: JSON.stringify(data)
-      });
-  
-      if (response.status === 200) {
-        const responseData = await response.json();
-        return responseData;
-      } else {
-        console.error("Request message " + response);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
 }
 
 async function splitDialogText(dialog_text) {
@@ -50,8 +23,6 @@ async function splitDialogText(dialog_text) {
 
 async function processEvent(event, { config, cache }) {
 
-    toxic_url = config.toxic_url;
-    console.log("toxic_url: ", toxic_url)
     if (!event.properties) {
         event.properties = {};
     }
@@ -66,27 +37,6 @@ async function processEvent(event, { config, cache }) {
 
     // Calculate dialog size
     event.properties['dialog_size'] = total_size;
-
-    // Get conversation toxicity
-    const textRoles = [];
-    for (const userUtterance of utterances.user) {
-        textRoles.push({ text: userUtterance, role: ROLE_USER });
-    }
-
-    for (const agentUtterance of utterances.agent) {
-        textRoles.push({ text: agentUtterance, role: ROLE_AGENT });
-    }
-
-    console.log("textRoles", textRoles)
-    res = await makePostRequest(toxic_url, textRoles);
-    
-    // Iterate res dictionary and add to event
-    for (const key in res) {
-      if (res.hasOwnProperty(key)) {
-            event.properties[key + "_test"] = res[key]; 
-        }
-    }
-
     return event;
 }
 

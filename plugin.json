@@ -1,15 +1,6 @@
 {
     "name": "Dialog Size",
-    "url": "https://github.com/PostHog/posthog-hello-world-plugin",
-    "description": "Caculate dialog size and toxicity from a conversation",
-    "main": "index.js",
-    "config": [
-        {
-            "key": "toxic_url",
-            "name": "URL for conversation toxicity",
-            "type": "string",
-            "default": "http://127.0.0.1:8081/conversation_toxicity",
-            "required": true
-        }
-    ]
+    "url": "https://github.com/AndrMoura/plugin-test",
+    "description": "Caculate dialog size from a conversation",
+    "main": "index.js"
 }
