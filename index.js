@@ -37,6 +37,7 @@ async function processEvent(event, { config, cache }) {
 
     // Calculate dialog size
     event.properties['dialog_size'] = total_size;
+    console.log("total_size", total_size)
     return event;
 }
 
