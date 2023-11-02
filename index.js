@@ -3,7 +3,7 @@
 
 // Plugin method that runs on plugin load
 async function setupPlugin({ config }) {
-    console.log(config)
+    console.log("App start", config)
 }
 
 async function processEvent(event, { config, cache }) {
@@ -17,13 +17,9 @@ async function processEvent(event, { config, cache }) {
     }
 
     dialog = event.properties['$dialog']
-    console.log("before parsing dialog", dialog)
     var dialog = JSON.parse(dialog);
-    console.log("after parsing dialog", dialog)
     var dialogSize = dialog.length;
-    // Calculate dialog size
     event.properties['dialog_size'] = dialogSize;
-    console.log("total_size", dialogSize)
     return event;
 }
 
