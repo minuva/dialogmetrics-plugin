@@ -20,7 +20,7 @@ async function processEvent(event, { config, cache }) {
     console.log("before parsing dialog", dialog)
     var dialog = JSON.parse(dialog);
     console.log("after parsing dialog", dialog)
-    var dialogSize = dialogItems.length;
+    var dialogSize = dialog.length;
     // Calculate dialog size
     event.properties['dialog_size'] = dialogSize;
     console.log("total_size", dialogSize)
