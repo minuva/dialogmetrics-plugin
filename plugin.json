@@ -1,6 +1,6 @@
 {
-    "name": "Dialog Size",
+    "name": "Dialog props",
     "url": "https://github.com/AndrMoura/plugin-test",
-    "description": "Caculate dialog size from a conversation",
+    "description": "Creates dialog properties from a conversation",
     "main": "index.js"
 }
