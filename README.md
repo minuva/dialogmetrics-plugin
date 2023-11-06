@@ -1,4 +1,4 @@
-# Muinuva Plugin: Dialog Properties
+# Minuva Plugin: Dialog Properties
 
 ## How to develop
 
