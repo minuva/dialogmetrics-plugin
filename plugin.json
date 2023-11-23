@@ -1,6 +1,6 @@
 {
-    "name": "Dialog props",
-    "url": "https://github.com/AndrMoura/plugin-test",
+    "name": "Dialog properties metrics",
+    "url": "https://github.com/minuva/dialogmetrics-plugin",
     "description": "Creates dialog properties from a conversation",
     "main": "index.js"
 }
